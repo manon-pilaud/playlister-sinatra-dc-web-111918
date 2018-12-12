@@ -6,7 +6,9 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
+
+
 end
 
 #seed database
-#create new songs method edit and delete and link to artists and genres 
+#create new songs method edit and delete and link to artists and genres
