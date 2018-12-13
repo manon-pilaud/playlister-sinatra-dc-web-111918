@@ -1,4 +1,4 @@
-<%# <h1><%=@artist.name%></h1>
+<h1><%=@artist.name%></h1>
 <ul>
   <%@artist.songs.each do |song|%>
   <p><%=song.name%></p>
@@ -6,12 +6,30 @@
 </ul> %>
 
 
-<!-- <ul>
-  <% @artist.songs.each do |song| %>
-  <li><a href="/songs/<%=song.slug%>"><%= song.name %> </a></li>
-</ul>
 
-<ul>
-  <% @artist.genres.each do |genre| %>
-  <li><a href="/genres/<%=genre.slug%>"><%= genre.name %> </a></li>
-</ul> -->
+  <h4>Songs:</h4>
+    <%@artist.songs.each do |song|%>
+  <ul>
+    <a href="/songs/<%=song.slug%>">
+        <%=song.name%>
+        </a>
+  </ul>
+  <%end%>
+
+  <h4>Genres:</h4>
+  <%@artist.genres.each do |genre|%>
+  <ul>
+    <a href="/genres/<%=genre.slug%>">
+          <%=genre.name%>
+        </a>
+
+  </ul>
+  <%end%>
+
+
+
+
+
+
+
+</p>

@@ -1,4 +1,4 @@
-<form action="/songs/<%=@song.id%>" method="post">
+<form action="/songs/<%=@song.slug%>" method="post">
 
   <input id="hidden" type="hidden" name="_method" value="patch"/>
   <input id="name" type="text" name="song[name]" value="<%=@song.name%>"/>

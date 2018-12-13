@@ -1,17 +1,13 @@
+require_relative './concerns/slugifiable.rb'
 class Artist < ActiveRecord::Base
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 
   has_many :songs
   has_many :genres, through: :songs
 
-  def slug
-    self.name.downcase.strip.gsub(" ", "-").gsub(/[^\w-]/, ‘’)
-  end
 
-  def self.find_by_slug(slug)
-    Artist.all.find do |artist|
-      artist.slug == slug
-    end
-  end
-  
+
+
 
 end

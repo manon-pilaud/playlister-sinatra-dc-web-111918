@@ -1,3 +1,5 @@
+require_relative './concerns/slugifiable.rb'
+
 class Genre < ActiveRecord::Base
 
   has_many :songs, through: :song_genres
@@ -5,15 +7,22 @@ class Genre < ActiveRecord::Base
   has_many :song_genres
 
 
-  def slug
-    self.name.downcase.strip.gsub(" ", "-").gsub(/[^\w-]/, ‘’)
-  end
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 
-  def self.find_by_slug(slug)
-    Genre.all.find do |genre|
-      genre.slug == slug
-    end
-  end
+
+
+
+
+  # def slug
+  #   self.name.downcase.strip.gsub(" ", "-").gsub(/[^\w-]/, ‘’)
+  # end
+  #
+  # def self.find_by_slug(slug)
+  #   Genre.all.find do |genre|
+  #     genre.slug == slug
+  #   end
+  # end
 
 
 end
