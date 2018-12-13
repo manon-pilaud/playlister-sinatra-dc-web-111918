@@ -1,10 +1,18 @@
+require'pry'
+
 class SongsController < ApplicationController
 
-# set :views, './views/songs'
 
   get '/songs' do
     @songs = Song.all
+    @songs.each do |song|
+      puts song.id
+      song.artist.name
+    end
     erb :'/songs/index'
+  end
+  get '/songs/new' do
+    erb :'/songs/new'
   end
 
   get '/songs/:slug' do
@@ -12,8 +20,13 @@ class SongsController < ApplicationController
     erb :'/songs/show'
   end
 
-  get '/songs/new' do
-    erb :'/songs/new'
+  post '/songs' do
+    @song = Song.create(name: params["Name"])
+    @song.artist = Artist.find_or_create_by(name: params["Artist Name"])
+    @song.genres = Genre.find(params["genres"])
+    @song.save
+    flash[:message] = "Successfully created song."
+    redirect("/songs/#{@song.slug}")
   end
 
   get '/songs/:slug/edit' do
@@ -24,7 +37,7 @@ class SongsController < ApplicationController
 
   patch '/songs/:slug' do
     @song = Song.find_by_slug(params[:slug])
-    redirect "/songs/#{@song.slug}"
+    redirect to "/songs/#{@song.slug}"
   end
 
 
