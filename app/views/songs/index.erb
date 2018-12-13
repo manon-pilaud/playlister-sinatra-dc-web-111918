@@ -1,18 +1,23 @@
-<ul>
+<h1>Songs</h1>
+<p>
   <%@songs.each do |song| %>
-  <li>
+
     <a href="/songs/<%=song.id%>">
-      <%=song.name%>
+      <h4><%=song.name%></h4>
     </a>
-  </li>
-  <p>
-  <%="song genres"%>
-  </p>
-  <p>
-  <%=song.artist.name%>
-  </p>
+
+  <ul>
+        <%=song.artist.name%>
+  </ul>
+
+  <h4>Genres:</h4>
+  <%song.genres.each do |genre|%>
+  <ul>
+          <%=genre.name%>
+  </ul>
+  <%end%>
   <%end%>
 
 
 
-</ul>
+</p>
